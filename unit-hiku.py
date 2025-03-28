@@ -1,5 +1,5 @@
-__version__ = (2, 0, 0)
-# change-log: fix more bugs + check updates
+__version__ = (2, 0, 1)
+# change-log: fix more bugs and fix info module
 
 """
 888    d8P   .d8888b.  888    888     888b     d888  .d88888b.  8888888b.   .d8888b.  
@@ -20,7 +20,7 @@ Licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 Inter
 
 import aiohttp, html, logging, re, inspect, io
 
-from .. import utils, loader
+from .. import utils, loader, translations
 
 logger = logging.getLogger("Hiku")
 
@@ -363,7 +363,7 @@ class Hiku(loader.Module, HikuAPI):
             await utils.answer(message, self.strings("actual_version").format(ver=correct_version_str))
         else:
             update_message = self.strings("old_version").format(ver=correct_version_str, new_ver=new_version)
-            update_message += self.strings("update_command").format(prefix=self.prefix, upd_file=f"{self.repo}/unit-hiku.py")
+            update_message += self.strings("update_command").format(prefix=self._prefix, upd_file=f"{self.repo}/unit-hiku.py")
             if what_new:
                 update_message += self.strings("update_whats_new").format(whats_new=what_new)
             await utils.answer(message, update_message)
