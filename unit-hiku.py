@@ -1,5 +1,5 @@
-__version__ = (2, 0, 1)
-# change-log: fix more bugs and fix info module
+__version__ = (2, 0, 2)
+# change-log: Change name to update cmd
 
 """
 888    d8P   .d8888b.  888    888     888b     d888  .d88888b.  8888888b.   .d8888b.  
