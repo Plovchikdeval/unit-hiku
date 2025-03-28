@@ -1,5 +1,5 @@
-__version__ = (1, 1, 1)
-# change-log: fix more bugs.
+__version__ = (2, 0, 0)
+# change-log: fix more bugs + check updates
 
 """
 888    d8P   .d8888b.  888    888     888b     d888  .d88888b.  8888888b.   .d8888b.  
