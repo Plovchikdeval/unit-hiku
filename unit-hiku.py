@@ -1,5 +1,5 @@
-__version__ = (2, 0, 3)
-# change-log: fix mini bugs.
+__version__ = (2, 0, 5)
+# change-log: change bot + fix mini bugs
 
 """
 888    d8P   .d8888b.  888    888     888b     d888  .d88888b.  8888888b.   .d8888b.  
@@ -107,8 +107,8 @@ class Hiku(loader.Module, HikuAPI):
 
     async def on_dlmod(self, client, db):    
         try:            
-            await client(UnblockRequest("@unithiku_bot"))
-            await utils.dnd(self._client, "@unithiku_bot", archive=True)
+            await client(UnblockRequest("@unithiku_offbot"))
+            await utils.dnd(self._client, "@unithiku_offbot", archive=True)
         except: 
             None
 
@@ -116,9 +116,9 @@ class Hiku(loader.Module, HikuAPI):
         self._prefix = self._client.loader.get_prefix()
         self.repo = "https://raw.githubusercontent.com/Plovchikdeval/unit-hiku/refs/heads/main/"
         try: 
-            await client(UnblockRequest("@unithiku_bot"))
-            await utils.dnd(self._client, "@unithiku_bot", archive=True)
-            await self._client.send_message('@unithiku_bot', '/start')
+            await client(UnblockRequest("@unithiku_offbot"))
+            await utils.dnd(self._client, "@unithiku_offbot", archive=True)
+            await self._client.send_message('@unithiku_offbot', '/start')
         except:
             None
         await self.request_join(
@@ -127,7 +127,7 @@ class Hiku(loader.Module, HikuAPI):
         )
 
     def __init__(self):
-        self.BOT = 7703725985
+        self.BOT = 7844809113
     
     @loader.command()
     async def hikucmd(self, message):
@@ -321,7 +321,7 @@ class Hiku(loader.Module, HikuAPI):
                 "message": "404 Not Found",
             }
 
-    @loader.watcher(only_messages=True, from_id=7703725985)
+    @loader.watcher(only_messages=True, from_id=7844809113)
     async def remove_service_messages(self, message):
         if "#skipIfModuleInstalled" in message.raw_text:
             await message.delete()
