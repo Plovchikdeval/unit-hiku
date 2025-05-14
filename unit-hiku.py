@@ -1,4 +1,4 @@
-__version__ = (2, 0, 7)
+__version__ = (2, 0, 8)
 # change-log: !!GLOBAL UPDATE!! FIX MORE BUGS + UPDATE BOT AND API!
 
 """
@@ -18,7 +18,12 @@ Licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 Inter
 # scope: hikka_min 1.3.3
 # meta developer: @kshmods
 
-import aiohttp, html, logging, re, inspect, io
+import aiohttp
+import html
+import logging
+import re
+import inspect
+import io
 from telethon.tl.functions.contacts import UnblockRequest
 from .. import utils, loader
 
@@ -28,7 +33,7 @@ class HikuAPI:
     async def get_all_modules(self) -> list:
         async with aiohttp.ClientSession() as session:
             async with session.get('https://unit-hiku.top/api/module/all') as response:
-                return [await response.json()][0] 
+                return [await response.json()][0]
 
     async def get_module_by_id(self, id) -> dict:
         async with aiohttp.ClientSession() as session:
@@ -38,8 +43,7 @@ class HikuAPI:
     async def get_module_raw(self, developer, module_name) -> str:
         async with aiohttp.ClientSession() as session:
             async with session.get(f'https://unit-hiku.top/api/module/{developer}/{module_name}') as response:
-                return {"content": response.content(), "name": f"{module_name}.py"}
-                
+                return {"content": await response.content.read(), "name": f"{module_name}.py"}
 
 @loader.tds
 class Hiku(loader.Module, HikuAPI):
@@ -98,40 +102,41 @@ class Hiku(loader.Module, HikuAPI):
         "noargs": "<emoji document_id=5210952531676504517>❌</emoji> <b>Нет аргументов</b>",
         "no_info": "<emoji document_id=5210952531676504517>❌</emoji> Нет информации.",
         "actual_version": "<blockquote> <emoji document_id=5208763618773978162>✅</emoji>У вас актуальная версия Hiku ({ver})</b></blockquote>",
-		"old_version": "<blockquote><emoji document_id=5875291072225087249>📊</emoji> У вас устаревшая версия UnitHiku ({ver}) </b></blockquote>\n\n<blockquote><emoji document_id=5879883461711367869>⬇️</emoji> <b>Новая версия: {new_ver} <b></blockquote>",
-		"update_command": "\n\n<blockquote><emoji document_id=5877410604225924969>🔄</emoji> Для обновления введите:</b> <code> {prefix}dlm {upd_file}</code></blockquote>",
-		"update_whats_new": "\n\n<blockquote><emoji document_id=5879785854284599288>ℹ️</emoji> <b>Список изменений:</b><code>{whats_new}</code>\n\n</blockquote>",
+        "old_version": "<blockquote><emoji document_id=5875291072225087249>📊</emoji> У вас устаревшая версия UnitHiku ({ver}) </b></blockquote>\n\n<blockquote><emoji document_id=5879883461711367869>⬇️</emoji> <b>Новая версия: {new_ver} <b></blockquote>",
+        "update_command": "\n\n<blockquote><emoji document_id=5877410604225924969>🔄</emoji> Для обновления введите:</b> <code> {prefix}dlm {upd_file}</code></blockquote>",
+        "update_whats_new": "\n\n<blockquote><emoji document_id=5879785854284599288>ℹ️</emoji> <b>Список изменений:</b><code>{whats_new}</code>\n\n</blockquote>",
         "fetch_failed": "<blockquote><emoji document_id=5208663713539704322>👎</emoji> <b>Не удалось получить данные</b></blockquote>",
         "join_channel": "Канал со всеми новостями UnitHiku!"
     }
 
-    async def on_dlmod(self, client, db):    
-        try:            
+    async def on_dlmod(self, client, db):
+        try:
             await client(UnblockRequest("@unithiku_offbot"))
             await utils.dnd(self._client, "@unithiku_offbot", archive=True)
-        except: 
-            None
+        except:
+            pass
 
     async def client_ready(self, client, db):
         self._prefix = self._client.loader.get_prefix()
         self.repo = "https://raw.githubusercontent.com/Plovchikdeval/unit-hiku/refs/heads/main/"
-        try: 
+        try:
             await client(UnblockRequest("@unithiku_offbot"))
             await utils.dnd(self._client, "@unithiku_offbot", archive=True)
             await self._client.send_message('@unithiku_offbot', '/start')
         except:
-            None
+            pass
+
         await self.request_join(
             "@unithiku_updates",
             self.strings['join_channel'],
         )
 
-	await client.send_message(7844809113, f"/set_prefix {self.get_prefix()}")
-	await message.delete()
+        await client.send_message(7844809113, f"/set_prefix {self.get_prefix()}")
+        await message.delete()
 
     def __init__(self):
         self.BOT = 7844809113
-    
+
     @loader.command()
     async def hikucmd(self, message):
         """[query] - Search module"""
@@ -142,10 +147,10 @@ class Hiku(loader.Module, HikuAPI):
         ))
         if not args:
             return await utils.answer(message, self.strings["noargs"])
-        
+
         modules = await self.get_all_modules()
         mods_to_show = []
-        
+
         for module in modules:
             if (
                 args.lower() in module['name'].lower() or
@@ -154,16 +159,16 @@ class Hiku(loader.Module, HikuAPI):
                 any(args in cmd or args in cmd_desc for func in module['commands'] for cmd, cmd_desc in func.items())
             ):
                 mods_to_show.append(module)
-        
+
         if not mods_to_show:
             return await utils.answer(message, self.strings('404'))
-        
+
         await self._show_module(message, mods_to_show, 0)
-    
+
     async def _show_module(self, message, mods_to_show, index):
         """Helper function to display a module with navigation buttons."""
         module = mods_to_show[index]
-        
+
         commands = []
         command_count = 0
         for func in module["commands"]:
@@ -193,7 +198,7 @@ class Hiku(loader.Module, HikuAPI):
             count=f'{len(mods_to_show)}',
             current_index=f'{index+1}',
         )
-        
+
         markup = [
             [
                 {
@@ -204,23 +209,23 @@ class Hiku(loader.Module, HikuAPI):
             ],
             []
         ]
-        
+
         if index > 0:
             markup[1].append({
                 'text': '◀ Back',
                 'callback': self._prev_mod,
                 'args': [mods_to_show, index - 1]
             })
-        
+
         if index < len(mods_to_show) - 1:
             markup[1].append({
                 'text': 'Next ▶',
                 'callback': self._next_mod,
                 'args': [mods_to_show, index + 1]
             })
-        
+
         await utils.answer(message, module_text, reply_markup=markup)
-    
+
     async def _prev_mod(self, call, mods_to_show, index):
         """Callback function to show the previous module."""
         await self._show_module(call, mods_to_show, index)
@@ -266,7 +271,7 @@ class Hiku(loader.Module, HikuAPI):
             commands = module.get('commands', [])
 
             if (query_lower in module_name or
-                query_lower in developer_name or 
+                query_lower in developer_name or
                 any(query_lower in cmd_key for cmd in commands for cmd_key in cmd.keys())):
 
                 command_descriptions = []
@@ -313,7 +318,6 @@ class Hiku(loader.Module, HikuAPI):
                     ]
                 })
 
-
         if len(mods_to_show) > 0:
             return mods_to_show
         elif len(mods_to_show) == 0:
@@ -338,7 +342,7 @@ class Hiku(loader.Module, HikuAPI):
 
     async def _inline_download(self, call, url, module_id):
         await self._load_module(url)
-        await self.client.send_message(self.BOT, f"#download:{module_id}")
+        await self.client.send_message(self对待BOT, f"#download:{module_id}")
 
         info = await self.get_module_by_id(module_id)
         markup = [
@@ -351,7 +355,7 @@ class Hiku(loader.Module, HikuAPI):
             f"✔️ Module {info['name']} installed successfully\n\n<code>{self._client.loader.get_prefix()}help {info['name']}</code>\n\n<b><i>If module is not installed:</i></b>\n<code>{self._prefix}dlm {url}</code>",
             reply_markup=markup
         )
-    
+
     @loader.command(en_doc="Check for updates", ru_doc="Проверить обновления", ua_doc="Перевірити оновлення")
     async def hcheck(self, message):
         """Check for updates"""
