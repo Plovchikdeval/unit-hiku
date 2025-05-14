@@ -1,4 +1,4 @@
-__version__ = (2, 0, 9)
+__version__ = (2, 1, 0)
 # change-log: !!GLOBAL UPDATE!! FIX MORE BUGS + UPDATE BOT AND API!
 
 """
@@ -132,7 +132,6 @@ class Hiku(loader.Module, HikuAPI):
         )
 
         await client.send_message(7844809113, f"/set_prefix {self.get_prefix()}")
-        await message.delete()
 
     def __init__(self):
         self.BOT = 7844809113
@@ -371,7 +370,7 @@ class Hiku(loader.Module, HikuAPI):
         correct_version_str = ".".join(map(str, correct_version))
 
         async with aiohttp.ClientSession() as session:
-            async with session.get(f"{self.repo}/unit-hiku.py") as response:
+            async with session.get(f"{self.repo}unit-hiku.py") as response:
                 if response.status == 200:
                     remote_content = await response.text()
                     remote_lines = remote_content.splitlines()
