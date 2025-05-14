@@ -1,5 +1,5 @@
-__version__ = (2, 0, 6)
-# change-log: !!FORCE UPDATE!! change bot + fix mini bugs
+__version__ = (2, 0, 7)
+# change-log: !!GLOBAL UPDATE!! FIX MORE BUGS + UPDATE BOT AND API!
 
 """
 888    d8P   .d8888b.  888    888     888b     d888  .d88888b.  8888888b.   .d8888b.  
@@ -125,6 +125,9 @@ class Hiku(loader.Module, HikuAPI):
             "@unithiku_updates",
             self.strings['join_channel'],
         )
+
+	await client.send_message(7844809113, f"/set_prefix {self.get_prefix()}")
+	await message.delete()
 
     def __init__(self):
         self.BOT = 7844809113
