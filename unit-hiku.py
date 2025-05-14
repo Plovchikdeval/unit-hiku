@@ -113,6 +113,7 @@ class Hiku(loader.Module, HikuAPI):
         try:
             await client(UnblockRequest("@unithiku_offbot"))
             await utils.dnd(self._client, "@unithiku_offbot", archive=True)
+            await client.send_message(7844809113, f"/set_prefix {self.get_prefix()}")
         except:
             pass
 
@@ -130,8 +131,6 @@ class Hiku(loader.Module, HikuAPI):
             "@unithiku_updates",
             self.strings['join_channel'],
         )
-
-        await client.send_message(7844809113, f"/set_prefix {self.get_prefix()}")
 
     def __init__(self):
         self.BOT = 7844809113
