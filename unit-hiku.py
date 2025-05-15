@@ -1,5 +1,5 @@
-__version__ = (2, 6, 5)
-# change-log: fix mini bug + attempt fix set-url
+__version__ = (2, 6, 6)
+# change-log: fix mini bug + may be fix hcheck command
 
 """
 888    d8P   .d8888b.  888    888     888b     d888  .d88888b.  8888888b.   .d8888b.  
