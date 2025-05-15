@@ -1,5 +1,5 @@
-__version__ = (2, 5, 10)
-# change-log: Add new to command, fix mini bug.
+__version__ = (2, 6, 1)
+# change-log: fix mini bug
 
 """
 888    d8P   .d8888b.  888    888     888b     d888  .d88888b.  8888888b.   .d8888b.  
@@ -113,7 +113,6 @@ class Hiku(loader.Module, HikuAPI):
         try:
             await client(UnblockRequest("@unithiku_offbot"))
             await utils.dnd(self._client, "@unithiku_offbot", archive=True)
-            await self._client.send_message(7844809113, f"/set_prefix {self.get_prefix()}")
         except:
             pass
 
@@ -397,6 +396,7 @@ class Hiku(loader.Module, HikuAPI):
     @loader.command()
     async def profile(self, message):
         """Your profile unit-hiku"""
+        await message.delete()
         profile = await self.client.inline_query("unithiku_offbot", "profile")
         if profile:
         	chat_id = message.chat_id
@@ -407,6 +407,7 @@ class Hiku(loader.Module, HikuAPI):
     @loader.command()
     async def serverinfo(self, message):
         """Server statistics unit-hiku"""
+        await message.delete()
         profile = await self.client.inline_query("unithiku_offbot", "si")
         if profile:
         	chat_id = message.chat_id
