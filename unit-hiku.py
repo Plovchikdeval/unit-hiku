@@ -1,5 +1,5 @@
-__version__ = (2, 6, 6)
-# change-log: fix mini bug + may be fix hcheck command
+__version__ = (2, 6, 7)
+# change-log: check my fix error
 
 """
 888    d8P   .d8888b.  888    888     888b     d888  .d88888b.  8888888b.   .d8888b.  
