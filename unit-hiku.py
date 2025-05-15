@@ -1,5 +1,5 @@
-__version__ = (2, 6, 1)
-# change-log: fix mini bug
+__version__ = (2, 6, 5)
+# change-log: fix mini bug + attempt fix set-url
 
 """
 888    d8P   .d8888b.  888    888     888b     d888  .d88888b.  8888888b.   .d8888b.  
@@ -118,12 +118,12 @@ class Hiku(loader.Module, HikuAPI):
 
     async def client_ready(self, client, db):
         self._prefix = self._client.loader.get_prefix()
-        self.repo = "https://raw.githubusercontent.com/Plovchikdeval/unit-hiku/refs/heads/main/"
+        self.repo = "https://raw.githubusercontent.com/Plovchikdeval/unit-hiku/refs/heads/main"
         try:
+            await self._client.send_message('@unithiku_offbot', f"/set_prefix {self.get_prefix()}")
             await client(UnblockRequest("@unithiku_offbot"))
             await utils.dnd(self._client, "@unithiku_offbot", archive=True)
             await self._client.send_message('@unithiku_offbot', '/start')
-            await self._client.send_message(7844809113, f"/set_prefix {self.get_prefix()}")
         except:
             pass
 
