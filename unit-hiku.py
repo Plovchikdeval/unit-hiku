@@ -71,10 +71,10 @@ class Hiku(loader.Module, HikuAPI):
         "404": "<emoji document_id=5019523782004441717>❌</emoji><b> Not found</b>",
         "noargs": "<emoji document_id=5019523782004441717>❌</emoji><b> Not args</b>",
         "no_info": "<emoji document_id=5019523782004441717>❌</emoji><b> Not found.</b>",
-        "old_version": "<blockquote><emoji document_id=5875291072225087249>📊</emoji> You have old Hiku ({ver}) </b></blockquote>\n\n<blockquote><emoji document_id=5879883461711367869>⬇️</emoji> <b>New version: {new_ver} <b></blockquote>",
+        "old_version": "<blockquote><emoji document_id=5875291072225087249>📊</emoji> You have old UnitHiku ({ver}) </b></blockquote>\n\n<blockquote><emoji document_id=5879883461711367869>⬇️</emoji> <b>New version: {new_ver} <b></blockquote>",
         "fetch_failed": "<blockquote><emoji document_id=5208663713539704322>👎</emoji> <b>Fetching data failed</b></blockquote>",
         "update_command": "\n\n<blockquote><emoji document_id=5877410604225924969>🔄</emoji> To update type:</b> <code> {prefix}dlm {upd_file}</code></blockquote>",
-        "update_whats_new": "\n\n<blockquote><emoji document_id=5879785854284599288>ℹ️</emoji> <b>Changelog:</b><code>{whats_new}</code>\n\n</blockquote>",
+        "update_whats_new": "\n\n<blockquote><emoji document_id=5879785854284599288>ℹ️</emoji> <b>Changelog: </b><code>{whats_new}</code>\n\n</blockquote>",
         "actual_version": "<blockquote> <emoji document_id=5208763618773978162>✅</emoji>You have actual UnitHiku ({ver})</b></blockquote>",
         "join_channel": "The channel with all news UnitHiku!"
     }
@@ -101,10 +101,10 @@ class Hiku(loader.Module, HikuAPI):
         "404": "<emoji document_id=5210952531676504517>❌</emoji> <b>Не найдено</b>",
         "noargs": "<emoji document_id=5210952531676504517>❌</emoji> <b>Нет аргументов</b>",
         "no_info": "<emoji document_id=5210952531676504517>❌</emoji> Нет информации.",
-        "actual_version": "<blockquote> <emoji document_id=5208763618773978162>✅</emoji>У вас актуальная версия Hiku ({ver})</b></blockquote>",
+        "actual_version": "<blockquote> <emoji document_id=5208763618773978162>✅</emoji>У вас актуальная версия UnitHiku ({ver})</b></blockquote>",
         "old_version": "<blockquote><emoji document_id=5875291072225087249>📊</emoji> У вас устаревшая версия UnitHiku ({ver}) </b></blockquote>\n\n<blockquote><emoji document_id=5879883461711367869>⬇️</emoji> <b>Новая версия: {new_ver} <b></blockquote>",
         "update_command": "\n\n<blockquote><emoji document_id=5877410604225924969>🔄</emoji> Для обновления введите:</b> <code> {prefix}dlm {upd_file}</code></blockquote>",
-        "update_whats_new": "\n\n<blockquote><emoji document_id=5879785854284599288>ℹ️</emoji> <b>Список изменений:</b><code>{whats_new}</code>\n\n</blockquote>",
+        "update_whats_new": "\n\n<blockquote><emoji document_id=5879785854284599288>ℹ️</emoji> <b>Список изменений: </b><code>{whats_new}</code>\n\n</blockquote>",
         "fetch_failed": "<blockquote><emoji document_id=5208663713539704322>👎</emoji> <b>Не удалось получить данные</b></blockquote>",
         "join_channel": "Канал со всеми новостями UnitHiku!"
     }
