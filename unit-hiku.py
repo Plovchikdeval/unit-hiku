@@ -1,4 +1,4 @@
-__version__ = (2, 1, 2)
+__version__ = (2, 5, 10)
 # change-log: !!GLOBAL UPDATE!! FIX MORE BUGS + UPDATE BOT AND API!
 
 """
