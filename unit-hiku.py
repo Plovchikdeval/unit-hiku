@@ -369,7 +369,7 @@ class Hiku(loader.Module, HikuAPI):
         correct_version_str = ".".join(map(str, correct_version))
 
         async with aiohttp.ClientSession() as session:
-            async with session.get(f"{self.repo}unit-hiku.py") as response:
+            async with session.get(f"{self.repo}/unit-hiku.py") as response:
                 if response.status == 200:
                     remote_content = await response.text()
                     remote_lines = remote_content.splitlines()
