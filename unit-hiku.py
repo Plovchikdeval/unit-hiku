@@ -1,5 +1,5 @@
 __version__ = (2, 5, 10)
-# change-log: !!GLOBAL UPDATE!! FIX MORE BUGS + UPDATE BOT AND API!
+# change-log: Add new to command, fix mini bug.
 
 """
 888    d8P   .d8888b.  888    888     888b     d888  .d88888b.  8888888b.   .d8888b.  
