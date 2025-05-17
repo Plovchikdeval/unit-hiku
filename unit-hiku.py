@@ -1,5 +1,5 @@
-__version__ = (2, 6, 9)
-# change-log: add new command
+__version__ = (2, 7, 0)
+# change-log: !!FORCE UPDATE!! GLOBAL FIX ERROR DOWNLOAD MODULE
 
 """
 888    d8P   .d8888b.  888    888     888b     d888  .d88888b.  8888888b.   .d8888b.  
@@ -346,7 +346,7 @@ class Hiku(loader.Module, HikuAPI):
 
     async def _inline_download(self, call, url, module_id):
         await self._load_module(url)
-        await self.client.send_message(self对待BOT, f"#download:{module_id}")
+        await self.client.send_message(self.BOT, f"#download:{module_id}")
 
         info = await self.get_module_by_id(module_id)
         markup = [
